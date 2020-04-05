@@ -26,9 +26,11 @@
                                             <th>اسم المنتج </th>
                                             <th>الزبون</th>
                                             <th>السائق</th>
+                                            <th>الكمية</th>
+                                            <th>السعر الاجمالي</th>
                                             <th>مكان التوصيل</th>
                                             <th>تاريخ الشراء</th>
-                                            
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -37,9 +39,11 @@
                                             <td>{{$sale->product_name}}</td>
                                             <td>{{$sale->client_name}}</td>
                                             <td>{{$sale->driver_name}}</td>
+                                            <td>{{$sale->qunatity}}</td>
+                                            <td>{{$sale->total}}</td>
                                             <td> {{$sale->delivery_location}}  </td>
                                             <td> {{$sale->created_at}}  </td>
-                                             
+                                            <td><a href="{{route('sale.remove',$sale->id)}}" class="btn btn-danger">حذف</a><a href="{{route('sale.edit',$sale->id)}}" class="btn btn-info mr-9 ">تعديل</a></td>
                                         </tr>
                                       @endforeach
                                     </tbody>

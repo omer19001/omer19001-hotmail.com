@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\client;
+use App\driver;
+use App\product;
+use App\client_credit_driver_product as sale;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +26,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('home')->with('clients',client::all())->with('drivers',driver::all())->with('products',product::all())->with('sales',sale::all());
     }
 }

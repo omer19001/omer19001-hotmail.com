@@ -19,6 +19,8 @@ class sale extends JsonResource
             'product_id' => $this->product_id,
             'driver_id'=>$this->driver_id,
             'credit_id'=>$this->credit_id,
+            'quantity'=>$this->qunatity,
+            'total'=>$this->qunatity,
             'created_at' => $this->created_at->format('d/m/Y'),
             'updated_at' => $this->updated_at->format('d/m/Y'),
         ];

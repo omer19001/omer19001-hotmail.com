@@ -14,7 +14,7 @@ class CreateClientCreditDriverProductTable extends Migration
     public function up()
     {
         Schema::create('client_credit_driver_product', function (Blueprint $table) {
-             
+            $table->id();
             $table->integer('client_id')->unsigned()->index();
             $table->foreign('client_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('product_id')->unsigned()->index();
@@ -23,7 +23,9 @@ class CreateClientCreditDriverProductTable extends Migration
             $table->foreign('credit_id')->references('id')->on('credits')->onDelete('cascade');
             $table->integer('driver_id')->unsigned()->index();
 			$table->foreign('driver_id')->references('id')->on('drivers')->onDelete('cascade');
-		 $table->string('delivery_location');
+         $table->string('delivery_location');
+         $table->bigInteger('qunatity');
+         $table->bigInteger('total');
             $table->timestamps();
         });
     }

@@ -32,11 +32,7 @@
                                             <input name='price' class="form-control">
                                             
                                         </div>
-                                        <div class="form-group">
-                                            <label>price offer</label>
-                                            <input name='offer' class="form-control">
-                                            
-                                        </div>
+                                        
                                         
                                         <div class="form-group">
                                             <label>صور المنتج</label>

@@ -54,6 +54,11 @@
                                           <input type="text" name="delivery_location" class="form-control" required>
                                             
                                         </div>
+                                        <div class="form-group">
+                                        <label>الكمية</label>
+                                          <input type="number" name="quantity" class="form-control" required>
+                                            
+                                        </div>
                                       
                                         <button type="submit" class="btn btn-success">حفظ</button>
                                          

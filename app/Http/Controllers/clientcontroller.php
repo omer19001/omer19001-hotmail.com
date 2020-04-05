@@ -26,12 +26,16 @@ class clientcontroller extends Controller
 
     public function insert(  )
     {
-         
-           
+        if(request()->hasfile('image'))
+        {
+            $imageName = time().'.'.request()->image->getClientOriginalExtension();
+        request()->image->move(public_path('images/client'), $imageName);
+        }else
+        $imageName=null;
+        
       
              
-        $imageName = time().'.'.request()->image->getClientOriginalExtension();
-        request()->image->move(public_path('images/client'), $imageName);
+        
        client::create([
            'name'=>request()->name,
            'phone_number'=>request()->phone_number,

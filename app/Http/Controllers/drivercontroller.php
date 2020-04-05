@@ -26,10 +26,14 @@ class drivercontroller extends Controller
     {
          
            
+        if($request->hasfile('image'))
+        {
+            $imageName = time().'.'.request()->image->getClientOriginalExtension();
+            request()->image->move(public_path('images/driver'), $imageName);;
+ 
+        }else
+        $imageName=null;   
          
-             
-        $imageName = time().'.'.request()->image->getClientOriginalExtension();
-        request()->image->move(public_path('images/driver'), $imageName);
 
        driver::create([
            'name'=>$request->name,

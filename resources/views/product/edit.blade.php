@@ -33,11 +33,7 @@
                                             <input name='price' value="{{$product->price}}" class="form-control">
                                             
                                         </div>
-                                        <div class="form-group">
-                                            <label>dasر</label>
-                                            <input name='offer_price' value="{{$product->offer_price}}"  class="form-control">
-                                            
-                                        </div>
+                                         
                                          
                                         <div class="form-group">
                                             <label>صور المنتج</label><br>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\client_credit_driver_product as sale;
+use App\product; 
 use Validator;
 use App\Http\Resources\sale as saleResource;
    
@@ -33,7 +34,14 @@ class SaleController extends BaseController
    
         
        
-         $sale=sale::create($input);
+       $sale= sale::create([
+            'client_id'=>$request->client_id,
+            'driver_id'=>$request->driver_id,
+            'product_id'=>$request->product_id,
+            'delivery_location'=>$request->delivery_location,
+            'qunatity'=>$request->quantity,
+            'total'=>product::find($request->product_id)->price*$request->quantity,
+        ]);
         
          
    
@@ -73,7 +81,15 @@ class SaleController extends BaseController
          
          
                
-                $sal=$sale->update($input);
+               
+       $sal= $sale->update([
+        'client_id'=>$request->client_id,
+        'driver_id'=>$request->driver_id,
+        'product_id'=>$request->product_id,
+        'delivery_location'=>$request->delivery_location,
+        'qunatity'=>$request->quantity,
+        'total'=>product::find($request->product_id)->price*$request->quantity,
+    ]);
               
       
         return $this->sendResponse(new saleResource($sal), 'sale updated successfully.');
