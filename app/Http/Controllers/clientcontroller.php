@@ -55,9 +55,13 @@ class clientcontroller extends Controller
     public function update($id,Request $request)
     {
        
-     
-        $imageName = time().'.'.request()->image->getClientOriginalExtension();
-        request()->image->move(public_path('images/client'), $imageName);
+        if($request->hasfile('image'))
+        {
+            $imageName = time().'.'.request()->image->getClientOriginalExtension();
+            request()->image->move(public_path('images/client'), $imageName);
+ 
+        }else
+        $imageName=client::find($id)->image;
          
               $client=client::find($id);
               $client->name=$request->name;

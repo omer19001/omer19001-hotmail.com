@@ -29,11 +29,28 @@ class ProductController extends BaseController
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-   
-        
-   
-        $product = Product::create($input);
+        if($request->hasfile('image'))
+        {
+
+           foreach($request->file('image') as $image)
+           {
+               $name=$image->getClientOriginalName();
+               $image->move(public_path().'/images/products', $name);  
+               $data[] = $name;  
+           }
+        }
+        else
+        $data=null;
+         
+             
+         
+
+        $product=  product::create([
+           'name'=>$request->name,
+           'price'=>$request->price,
+           'offer_price'=>$request->offer,
+            'image'=>json_encode($data),
+       ]);
    
         return $this->sendResponse(new ProductResource($product), 'Product created successfully.');
     } 
@@ -64,14 +81,31 @@ class ProductController extends BaseController
      */
     public function update(Request $request, Product $product)
     {
-        $input = $request->all();
+       
    
+        if($request->hasfile('image'))
+        {
+
+           foreach($request->file('image') as $image)
+           {
+               $name=$image->getClientOriginalName();
+               $image->move(public_path().'/images/products', $name);  
+               $data[] = $name;  
+           }
+        }
+    
+        
          
+               
+              $product->name=$request->name;
+              $product->price=$request->price;
+              $product->offer_price=$request->offer_price;
+              if($request->hasfile('filename'))
+              $product->image=json_encode($data);
+       $product->save();
     
    
-        $product->name = $input['name'];
-        $product->price = $input['price'];
-        $product->save();
+        
    
         return $this->sendResponse(new ProductResource($product), 'Product updated successfully.');
     }

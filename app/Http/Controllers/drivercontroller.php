@@ -53,11 +53,13 @@ class drivercontroller extends Controller
     }
     public function update($id,Request $request)
     {
-       
+        if($request->hasfile('image'))
+        {
         $imageName = time().'.'.request()->image->getClientOriginalExtension();
         request()->image->move(public_path('images/driver'), $imageName);
  
-         
+        }else
+        $imageName=driver::find($id)->image;
               $driver=driver::find($id);
               $driver->name=$request->name;
               $driver->phone_number=$request->phone_number;
