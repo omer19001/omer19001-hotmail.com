@@ -23,4 +23,5 @@ Route::middleware('auth:api')->group( function () {
     Route::resource('clients', 'API\ClientController');
     Route::resource('drivers', 'API\DriverController');
     Route::resource('sales', 'API\SaleController');
+    
 });

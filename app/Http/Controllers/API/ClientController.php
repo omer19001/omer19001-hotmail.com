@@ -59,9 +59,9 @@ class ClientController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($phone)
     {
-        $client = client::find($id);
+        $client = client::where('phone_number',$phone)->get();
   
         if (is_null($client)) {
             return $this->sendError('client not found.');
