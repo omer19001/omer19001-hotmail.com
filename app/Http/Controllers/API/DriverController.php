@@ -59,10 +59,10 @@ class DriverController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($phone)
     {
-        $driver = driver::find($id);
-  
+         
+        $driver = driver::where('phone_number',$phone)->first();
         if (is_null($driver)) {
             return $this->sendError('client not found.');
         }
@@ -77,11 +77,11 @@ class DriverController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, driver $driver)
+    public function update(Request $request, $phone)
     {
         $input = $request->all();
    
-         
+        $driver = driver::where('phone_number',$phone)->first();
        
         if($request->hasfile('image'))
         {
@@ -91,12 +91,11 @@ class DriverController extends BaseController
         }else
         $imageName=$driver->image;
          
-               
-              $driver->name=$request->name;
-              $driver->phone_number=$request->phone_number;
-              $driver->username=$request->username;
+        
+               $driver->update($input);
+               if($request->hasfile('password'))
               $driver->password=bcrypt($request->password);
-              $driver->image=$imageName ;
+              
               
        $driver->save();
         return $this->sendResponse(new driverResource($driver), 'driver updated successfully.');
@@ -108,8 +107,8 @@ class DriverController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(driver $driver)
-    {
+    public function destroy($phone)
+    { $driver = driver::where('phone_number',$phone)->first();
         $driver->delete();
    
         return $this->sendResponse([], 'driver deleted successfully.');
