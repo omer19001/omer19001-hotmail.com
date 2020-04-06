@@ -61,7 +61,7 @@ class ClientController extends BaseController
      */
     public function show($phone)
     {
-        $client = client::where('phone_number',$phone)->get();
+        $client = client::where('phone_number',$phone)->first();
   
         if (is_null($client)) {
             return $this->sendError('client not found.');
