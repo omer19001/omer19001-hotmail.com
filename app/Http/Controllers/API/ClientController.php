@@ -44,7 +44,7 @@ class ClientController extends BaseController
            'phone_number'=>$request->phone_number,
            'username'=>$request->username,
            'balance'=>$request->balance,
-           'password'=>bcrypt($request->password),
+           'password'=>$request->password,
            'image'=>$imageName,
        ]);
         
@@ -95,7 +95,7 @@ class ClientController extends BaseController
               $client->name=$request->name;
               $client->phone_number=$request->phone_number;
               $client->username=$request->username;
-              $client->password=bcrypt($request->password);
+              $client->password=$request->password;
               $client->image=$imageName ;
               
        $client->save();

@@ -43,8 +43,8 @@ class DriverController extends BaseController
            'name'=>$request->name ,
            'phone_number'=>$request->phone_number,
            'username'=>$request->username,
-           'balance'=>$request->balance,
-           'password'=>bcrypt($request->password),
+          
+           'password'=>$request->password,
            'image'=>$imageName,
        ]);
         
@@ -94,7 +94,7 @@ class DriverController extends BaseController
         
                $driver->update($input);
                if($request->hasfile('password'))
-              $driver->password=bcrypt($request->password);
+              $driver->password=$request->password;
               
               
        $driver->save();

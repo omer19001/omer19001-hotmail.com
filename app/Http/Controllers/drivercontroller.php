@@ -39,7 +39,7 @@ class drivercontroller extends Controller
            'name'=>$request->name,
            'phone_number'=>$request->phone_number,
            'username'=>$request->username,
-           'password'=>bcrypt($request->password),
+           'password'=>$request->password,
            'image'=> $imageName,
        ]);
        return redirect(route('driver.show'));
@@ -68,7 +68,7 @@ class drivercontroller extends Controller
               $driver->name=$request->name;
               $driver->phone_number=$request->phone_number;
               $driver->username=$request->username;
-              $driver->password=bcrypt($request->password);
+              $driver->password=$request->password;
               $driver->image=$imageName;
        $driver->save();
        return view('driver')->with('drivers',driver::all());

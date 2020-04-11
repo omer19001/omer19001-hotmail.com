@@ -40,7 +40,7 @@ class clientcontroller extends Controller
            'name'=>request()->name,
            'phone_number'=>request()->phone_number,
            'username'=>request()->username,
-           'password'=>bcrypt(request()->password),
+           'password'=>request()->password,
            'image'=>$imageName,
        ]);
        return redirect(route('client.show'));
@@ -71,7 +71,7 @@ class clientcontroller extends Controller
               $client->name=$request->name;
               $client->phone_number=$request->phone_number;
               $client->username=$request->username;
-              $client->password=bcrypt($request->password);
+              $client->password=$request->password;
               $client->image=$imageName ;
               
        $client->save();
