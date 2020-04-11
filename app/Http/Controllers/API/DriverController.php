@@ -38,15 +38,9 @@ class DriverController extends BaseController
  
         }else
         $imageName=null;
+        $input['image']=$imageName;
+        $driver=  driver::create( $input);
        
-        $driver=  driver::create([
-           'name'=>$request->name ,
-           'phone_number'=>$request->phone_number,
-           'username'=>$request->username,
-          
-           'password'=>$request->password,
-           'image'=>$imageName,
-       ]);
         
          
    
@@ -90,11 +84,10 @@ class DriverController extends BaseController
  
         }else
         $imageName=$driver->image;
-         
+        $input['image']=$imageName;
         
                $driver->update($input);
-               if($request->hasfile('password'))
-              $driver->password=$request->password;
+               
               
               
        $driver->save();

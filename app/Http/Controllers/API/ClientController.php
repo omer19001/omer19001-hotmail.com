@@ -38,15 +38,8 @@ class ClientController extends BaseController
  
         }else
         $imageName=null;
-       
-        $client=  client::create([
-           'name'=>$request->name ,
-           'phone_number'=>$request->phone_number,
-           'username'=>$request->username,
-           'balance'=>$request->balance,
-           'password'=>$request->password,
-           'image'=>$imageName,
-       ]);
+        $input['image']=$imageName;
+        $client=  client::create( $input);
         
          
    
@@ -90,15 +83,11 @@ class ClientController extends BaseController
  
         }else
         $imageName=$client->image;
-         
+        $input['image']=$imageName;
                
-              $client->name=$request->name;
-              $client->phone_number=$request->phone_number;
-              $client->username=$request->username;
-              $client->password=$request->password;
-              $client->image=$imageName ;
-              
-       $client->save();
+               
+              $client->update($input);
+              $client->save();
         return $this->sendResponse(new clientResource($client), 'client updated successfully.');
     }
    
